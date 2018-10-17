@@ -1,0 +1,22 @@
+<html>
+   <table>
+   <tr>
+      <th>Nombre de receta</th>
+      <th>Tiempo de preparación total</th>
+      <th>Número de pasos</th>
+   </tr>
+   {
+   for $a in doc("recipes.xml")/recetas/receta
+   let $b := $a/name
+   let $c := $a/sum(timers)
+   let $d := $a/count(steps)
+   order by $c
+   return 
+      <tr>
+        <td>{data($b)}</td>
+        <td>{$c}</td>
+        <td>{$d}</td>
+      </tr>
+   }
+   </table>
+</html>

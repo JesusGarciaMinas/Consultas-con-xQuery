@@ -1,0 +1,1 @@
+doc("products.xml")/productos/producto[rating>4 and type = 'fruit']

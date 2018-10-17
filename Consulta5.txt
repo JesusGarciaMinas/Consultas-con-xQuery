@@ -1,0 +1,8 @@
+for  $a in doc ("products.xml")//producto[rating>0] 
+let $b := round-half-to-even(xs:decimal($a/rating) div xs:decimal($a/price),2)
+order by $b descending 
+return 
+<producto> 
+     {$a/title, $a/description} 
+     <relacion> {$b} </relacion> 
+</producto> 

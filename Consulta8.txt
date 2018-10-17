@@ -1,0 +1,20 @@
+for $a in doc("products.xml")/productos
+    for $b in doc("recipes.xml")/recetas
+    where ($a/producto/title!=$b/receta/name)
+    let $c := count($a/producto)
+    let $d := count ($b/receta/ingredients)
+    let $e := count ($a/producto[type = 'meat'])
+    let $f := count ($b/receta/ingredients[type = 'Meat'])
+    let $g :=xs:string (round-half-to-even(xs:decimal ($e) div xs:decimal ($c) *100,2))
+    let $h :=xs:string (round-half-to-even(xs:decimal ($f) div xs:decimal ($d) *100,2))
+      return 
+      <Meat>
+        <recetas>
+           <Cantidad>{$f}</Cantidad>
+           <Porcentaje>{concat($h ,"%")}</Porcentaje>
+        </recetas> 
+        <productos>
+           <Cantidad>{$e}</Cantidad>
+           <Porcentaje>{concat($g ,"%")}</Porcentaje>
+        </productos>
+      </Meat>

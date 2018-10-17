@@ -1,0 +1,12 @@
+<productos>
+  {
+  for $a in doc("recipes.xml")/recetas/receta/ingredients/name
+    for $b in doc("products.xml")/productos/producto/title
+      where contains(lower-case($b), lower-case($a))
+      let $c := $b
+      let $d := $a/../../name
+      group by $b
+      order by count($c[.=$b])
+      return <producto><title>{$b}</title><numberoftimesused>{count($c[.=$b])}</numberoftimesused><recipes>{$d}</recipes></producto>
+  }
+</productos>

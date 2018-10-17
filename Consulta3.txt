@@ -1,0 +1,1 @@
+doc("products.xml")/productos/producto[price > 15.00 and price < 25.00 and type = 'bakery']/title

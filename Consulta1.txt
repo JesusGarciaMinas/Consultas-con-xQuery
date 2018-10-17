@@ -1,0 +1,1 @@
+doc("recipes.xml")/recetas/receta[count(ingredients) > 5 and count(steps) < 10]/name

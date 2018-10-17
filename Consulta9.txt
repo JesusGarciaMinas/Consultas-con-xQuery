@@ -1,0 +1,4 @@
+for $a in doc("recipes.xml")//receta/ingredients
+for $b in doc("products.xml")//producto
+where (lower-case($a/type)= 'baking') and contains (lower-case($b/title), lower-case($a/name))
+return <receta>{$a/../name}</receta>

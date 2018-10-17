@@ -1,0 +1,8 @@
+for $a in doc("recipes.xml")//receta
+let $b := $a/name
+let $c := $a/count(ingredients)
+let $d := $a/sum(timers)
+let $e := $a/count(steps)
+let $f := round-half-to-even(xs:decimal($d) div xs:decimal($e),1)
+order by $f descending
+return <receta>{$b, $c}<productividad>{$f}</productividad></receta>
